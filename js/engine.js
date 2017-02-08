@@ -92,7 +92,8 @@ var Engine = (function(global) {
         checkCollisions();
 
     }
-
+//Creating the collision reaction. Player resets if she is hit or jumps into an
+//occupied space.
     function checkCollisions() {
         var playerX = player.x,
             playerY = player.y,
@@ -138,8 +139,8 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/water-block.png',   // Top row is water
+                'images/water-block.png',   // Row 1 of 2 of water
+                'images/water-block.png',   // Row 2 of 2 of water
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 3 of 3 of stone
@@ -190,8 +191,9 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        player = new Player()
+        player = new Player();
         notified = false;
+        startEnemies();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
