@@ -26,6 +26,8 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-cat-girl.png';
+    this.x = 0;
+    this.y = 380;
 };
 
 Player.prototype.update = function(dt) {
@@ -38,6 +40,28 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
 //Not checking key right now and might not need to
+    console.log("Asked to move by button: " + key);
+    if (!this.sprite_img) {
+        this.sprite_img = Resources.get(this.sprite);
+        this.width = this.sprite_img.width
+        this.maxWidth = 505 - this.width;
+        this.minWidth = 0
+        this.height = this.sprite_img.height;
+        this.maxHeight = 380;
+        this.minHeight = 0
+        this.heightMove = this.height / 2;
+
+    }
+
+    if (key == 'right' && this.x < this.maxWidth) {
+        this.x = this.x + this.width;
+    } else if (key == 'left' && this.x > this.minWidth) {
+        this.x = this.x - this.width;
+    } else if (key == 'down' && this.y < this.maxHeight) {
+        this.y = this.y + this.heightMove;
+    } else if (key == 'up' && this.y > this.minHeight) {
+        this.y = this.y - this.heightMove;
+    }
 
 };
 
