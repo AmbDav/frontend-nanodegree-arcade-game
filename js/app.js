@@ -11,7 +11,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    
+    this.y = 225;
 };
 // Y axis point 50, 140, 225
 // Update the enemy's position, required method for game
@@ -20,8 +20,9 @@ Enemy.prototype.update = function(dt) {
     if (!this.sprite_img) {
         this.sprite_img = Resources.get(this.sprite);
         this.starting_x_pos = -this.sprite_img.width;
+        this.width = -this.starting_x_pos;
+        this.height = this.sprite_img.height;
         this.x = this.starting_x_pos;
-        this.y = 225;
     }
 
     // You should multiply any movement by the dt parameter
@@ -54,11 +55,6 @@ Player.prototype.update = function(dt) {
 };
 
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-Player.prototype.handleInput = function(key) {
-//Not checking key right now and might not need to
     if (!this.sprite_img) {
         this.sprite_img = Resources.get(this.sprite);
         this.width = this.sprite_img.width
@@ -69,8 +65,13 @@ Player.prototype.handleInput = function(key) {
         this.minHeight = 0
         this.heightMove = this.height / 2;
         this.widthMove = this.width;
-
     }
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.handleInput = function(key) {
+//Not checking key right now and might not need to
+
 
     if (key == 'right' && this.x < this.maxWidth) {
         this.x = this.x + this.widthMove;
