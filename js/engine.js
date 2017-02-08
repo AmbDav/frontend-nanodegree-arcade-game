@@ -53,6 +53,13 @@ var Engine = (function(global) {
          */
         lastTime = now;
 
+        // check to see if won
+        if (player.minHeight > player.y && !notified) {
+            notified = true;
+            alert("YOU WON");
+            reset();
+        }
+
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
@@ -69,6 +76,8 @@ var Engine = (function(global) {
         main();
     }
 
+    notified = false;
+
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
      * you implement your collision detection (when two entities occupy the
@@ -81,6 +90,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
+
     }
 
     /* This is called by the update function and loops through all of the
@@ -159,7 +169,8 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        player = new Player()
+        notified = false;
     }
 
     /* Go ahead and load all of the images we know we're going to need to

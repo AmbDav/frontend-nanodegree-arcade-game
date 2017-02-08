@@ -63,7 +63,6 @@ Player.prototype.handleInput = function(key) {
     } else if (key == 'up' && this.y > this.minHeight) {
         this.y = this.y - this.heightMove;
     }
-
 };
 
 
