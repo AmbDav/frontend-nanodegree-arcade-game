@@ -1,3 +1,8 @@
+// Some constants for easier reference
+var C = {
+    canvas_width : 505
+};
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -6,14 +11,28 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    
 };
-
+// Y axis point 50, 140, 225
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    if (!this.sprite_img) {
+        this.sprite_img = Resources.get(this.sprite);
+        this.starting_x_pos = -this.sprite_img.width;
+        this.x = this.starting_x_pos;
+        this.y = 225;
+    }
+
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (this.x < C.canvas_width) {
+        this.x += 200 * dt;
+    } else {
+        this.x = this.starting_x_pos;
+    }
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -40,7 +59,6 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
 //Not checking key right now and might not need to
-    console.log("Asked to move by button: " + key);
     if (!this.sprite_img) {
         this.sprite_img = Resources.get(this.sprite);
         this.width = this.sprite_img.width
