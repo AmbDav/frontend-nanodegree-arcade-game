@@ -52,7 +52,7 @@ Enemy.prototype.render = function() {
 var Player = function() {
     this.sprite = 'images/char-cat-girl.png';
     this.x = 200;
-    this.y = 380;
+    this.y = 480;
 };
 
 Player.prototype.update = function(dt) {
@@ -66,8 +66,8 @@ Player.prototype.render = function() {
         this.maxWidth = 402;
         this.minWidth = 0
         this.height = this.sprite_img.height;
-        this.maxHeight = 380;
-        this.minHeight = 0
+        this.maxHeight = 480;
+        this.minHeight = 100
         this.heightMove = this.height / 2;
         this.widthMove = this.width;
     }
@@ -94,9 +94,9 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-allEnemies = [new Enemy(50),
-                new Enemy(140),
-                new Enemy(225)];
+allEnemies = [new Enemy(140),
+                new Enemy(225),
+                new Enemy(310)];
 player = new Player();
 
 // This listens for key presses and sends the keys to your
