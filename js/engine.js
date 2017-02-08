@@ -56,7 +56,7 @@ var Engine = (function(global) {
         // check to see if won
         if (player.minHeight > player.y && !notified) {
             notified = true;
-            alert("YOU WON");
+            alert("Congradulations. You helped Ophelia reach her goal.");
             reset();
         }
 
