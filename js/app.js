@@ -3,17 +3,20 @@ var C = {
     canvas_width : 505
 };
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 // Enemies our player must avoid
 var Enemy = function(startY) {
     
     this.sprite = 'images/enemy-bug.png';
     this.y = startY;
-    this.speed = getRandomInt(50, 300);
+    this.speed = this.getRandomInt(50, 300);
 };
+
+
+
+Enemy.prototype.getRandomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Y axis point 140, 225, 310
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
